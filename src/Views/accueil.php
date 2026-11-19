@@ -2,7 +2,6 @@
 require_once dirname(__DIR__, 2) . '/src/Config/env.php';
 $appName = $_ENV["APP_NAME"];
 ?>
-
 <header>
     <nav>
         <a href="/">Accueil</a>
