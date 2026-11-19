@@ -10,19 +10,4 @@ class AccueilController extends RenderController
     {
         return $this->render($response, 'accueil');
     }
-
-    public function connexion(Request $request, Response $response): Response
-    {
-        return $this->render($response, 'connexion');
-    }
-
-    public function inscription(Request $request, Response $response): Response
-    {
-        return $this->render($response, 'inscription');
-    }
-
-    public function dashboard(Request $request, Response $response): Response
-    {
-        return $this->render($response, 'dashboard');
-    }
 }
