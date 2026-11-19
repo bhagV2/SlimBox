@@ -2,13 +2,24 @@
 require_once dirname(__DIR__, 2) . '/src/Config/env.php';
 $appName = $_ENV["APP_NAME"];
 ?>
-<form action="" method="post">
-    <h1><?= $data[0] ?></h1>
-    <label for="">mail</label>
-    <input type="email" name="email" id="email">
-    <label for="mdp">mot de passe</label>
-    <input type="password" name="mdp" id="mdp">
-    <button type="submit">Confirmer</button>
-</form>
+
+<header>
+    <nav>
+        <a href="/">Accueil</a>
+        <a href="/connexion">Connexion</a>
+    </nav>
+</header>
+
+<main>
+    <h1>Bienvenue sur <?= htmlspecialchars($appName, ENT_QUOTES, 'UTF-8') ?></h1>
+    <h2>La messagerie qui vous rapproche</h2>
+    <p>
+        <?= htmlspecialchars($appName, ENT_QUOTES, 'UTF-8') ?> est une messagerie en ligne
+        simple et pratique pour échanger avec vos proches.
+    </p>
+    <p><a href="/connexion">Connectez-vous à votre compte</a></p>
+    <p><a href="/inscription">incrivez-vous</a></p>
+    <p><a href="/dashboard">dashboard</a></p>
+</main>
 
 <footer>Bhagya &copy; <?= $appName ?> 2026</footer>
