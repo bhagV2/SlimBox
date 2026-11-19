@@ -2,10 +2,13 @@
 
 use Slim\App;
 use App\Controllers\AccueilController;
+use App\Controllers\ConnexionController;
+use App\Controllers\DashboardController;
+use App\Controllers\InscriptionController;
 
 return function (App $app) {
     $app->get('/', [AccueilController::class, 'index']);
-    $app->get('/connexion', [AccueilController::class, 'connexion']);
-    $app->get('/dashboard', [AccueilController::class, 'dashboard']);
-    $app->get('/inscription', [AccueilController::class, 'inscription']);
+    $app->get('/connexion', [ConnexionController::class, 'index']);
+    $app->get('/dashboard', [DashboardController::class, 'index']);
+    $app->get('/inscription', [InscriptionController::class, 'index']);
 };
