@@ -8,29 +8,21 @@ class AccueilController extends RenderController
 {
     public function index(Request $request, Response $response): Response
     {
-        $page = "accueil";
-        return $this->render($response, $page, ['connexion']);
+        return $this->render($response, 'accueil');
     }
 
-    public function signin(Request $request, Response $response): Response
+    public function connexion(Request $request, Response $response): Response
     {
-        $titrePage = 'Sign In';
+        return $this->render($response, 'connexion');
+    }
 
-        ob_start();
-        include dirname(__DIR__, 2) . '/src/Views/signin.php';
-        $response->getBody()->write(ob_get_clean());
-
-        return $response;
+    public function inscription(Request $request, Response $response): Response
+    {
+        return $this->render($response, 'inscription');
     }
 
     public function dashboard(Request $request, Response $response): Response
     {
-        $titrePage = 'Page Home';
-
-        ob_start();
-        include dirname(__DIR__, 2) . '/src/Views/dashboard.php';
-        $response->getBody()->write(ob_get_clean());
-
-        return $response;
+        return $this->render($response, 'dashboard');
     }
 }
