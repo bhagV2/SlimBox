@@ -1,10 +1,8 @@
-<link rel="stylesheet" href="/css/header.css">
-
 <header class="header">
     <div class="header-inner">
-        <a class="header-brand" href="/" aria-label="<?= htmlspecialchars($appName, ENT_QUOTES, 'UTF-8') ?> - accueil">
+        <a class="header-brand" href="/" aria-label="<?= htmlspecialchars($appName ?? '') ?> - accueil">
             <span class="header-logo" aria-hidden="true">S</span>
-            <span><?= htmlspecialchars($appName, ENT_QUOTES, 'UTF-8') ?></span>
+            <span><?= htmlspecialchars($appName ?? '') ?></span>
         </a>
 
         <nav class="header-nav" aria-label="Navigation principale">
