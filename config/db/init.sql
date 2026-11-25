@@ -1,39 +1,57 @@
 CREATE DATABASE IF NOT EXISTS slimbox CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE slimbox;
 
--- Ce script réinitialise les tables. Pour créer le compte MySQL de l'application, voir create-user.sql.
+-- Réinitialiser les tables avec ce script. Créer le compte MySQL avec create-user.sql.
 DROP TABLE IF EXISTS messages;
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS amities;
+DROP TABLE IF EXISTS utilisateurs;
 
-CREATE TABLE users (
+CREATE TABLE utilisateurs (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    email VARCHAR(150) NOT NULL UNIQUE,
-    password_hash VARCHAR(255) NOT NULL,
-    role ENUM('user', 'admin') NOT NULL DEFAULT 'user',
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    nom_utilisateur VARCHAR(50) NOT NULL UNIQUE,
+    adresse_courriel VARCHAR(150) NOT NULL UNIQUE,
+    mot_de_passe_hash VARCHAR(255) NOT NULL,
+    type_compte ENUM('utilisateur', 'administrateur') NOT NULL DEFAULT 'utilisateur',
+    date_creation TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE amities (
+    utilisateur_un_id INT UNSIGNED NOT NULL,
+    utilisateur_deux_id INT UNSIGNED NOT NULL,
+    demandeur_id INT UNSIGNED NOT NULL,
+    statut ENUM('en_attente', 'acceptee') NOT NULL DEFAULT 'en_attente',
+    date_creation TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (utilisateur_un_id, utilisateur_deux_id),
+    INDEX idx_amities_utilisateur_deux_statut (utilisateur_deux_id, statut),
+    INDEX idx_amities_demandeur_statut (demandeur_id, statut),
+    CONSTRAINT fk_amities_utilisateur_un FOREIGN KEY (utilisateur_un_id) REFERENCES utilisateurs(id) ON DELETE CASCADE,
+    CONSTRAINT fk_amities_utilisateur_deux FOREIGN KEY (utilisateur_deux_id) REFERENCES utilisateurs(id) ON DELETE CASCADE,
+    CONSTRAINT fk_amities_demandeur FOREIGN KEY (demandeur_id) REFERENCES utilisateurs(id) ON DELETE CASCADE
 );
 
 CREATE TABLE messages (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    sender_id INT UNSIGNED NOT NULL,
-    recipient_id INT UNSIGNED NOT NULL,
-    subject VARCHAR(150) NOT NULL,
-    body TEXT NOT NULL,
-    is_read TINYINT(1) NOT NULL DEFAULT 0,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT fk_messages_sender FOREIGN KEY (sender_id) REFERENCES users(id) ON DELETE CASCADE,
-    CONSTRAINT fk_messages_recipient FOREIGN KEY (recipient_id) REFERENCES users(id) ON DELETE CASCADE,
-    INDEX idx_messages_recipient (recipient_id, created_at)
+    expediteur_id INT UNSIGNED NOT NULL,
+    destinataire_id INT UNSIGNED NOT NULL,
+    sujet VARCHAR(150) NOT NULL,
+    contenu TEXT NOT NULL,
+    est_lu TINYINT(1) NOT NULL DEFAULT 0,
+    date_creation TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_messages_expediteur FOREIGN KEY (expediteur_id) REFERENCES utilisateurs(id) ON DELETE CASCADE,
+    CONSTRAINT fk_messages_destinataire FOREIGN KEY (destinataire_id) REFERENCES utilisateurs(id) ON DELETE CASCADE,
+    INDEX idx_messages_destinataire (destinataire_id, date_creation)
 );
 
--- Mot de passe de démo pour tous les comptes : slimbox123
-INSERT INTO users (username, email, password_hash, role) VALUES
-('admin', 'admin@slimbox.local', '$2y$12$c3V4x0MK.636Lsmb9iyTPeP8cc81pB7SHOVZqWbb2cJgGcUlge5Pm', 'admin'),
-('alice', 'alice@slimbox.local', '$2y$12$c3V4x0MK.636Lsmb9iyTPeP8cc81pB7SHOVZqWbb2cJgGcUlge5Pm', 'user'),
-('bob',   'bob@slimbox.local',   '$2y$12$c3V4x0MK.636Lsmb9iyTPeP8cc81pB7SHOVZqWbb2cJgGcUlge5Pm', 'user');
+-- Utiliser ce mot de passe pour tous les comptes de démonstration : slimbox123
+INSERT INTO utilisateurs (nom_utilisateur, adresse_courriel, mot_de_passe_hash, type_compte) VALUES
+('admin', 'admin@slimbox.local', '$2y$12$c3V4x0MK.636Lsmb9iyTPeP8cc81pB7SHOVZqWbb2cJgGcUlge5Pm', 'administrateur'),
+('alice', 'alice@slimbox.local', '$2y$12$c3V4x0MK.636Lsmb9iyTPeP8cc81pB7SHOVZqWbb2cJgGcUlge5Pm', 'utilisateur'),
+('bob',   'bob@slimbox.local',   '$2y$12$c3V4x0MK.636Lsmb9iyTPeP8cc81pB7SHOVZqWbb2cJgGcUlge5Pm', 'utilisateur');
 
-INSERT INTO messages (sender_id, recipient_id, subject, body, is_read) VALUES
+INSERT INTO amities (utilisateur_un_id, utilisateur_deux_id, demandeur_id, statut) VALUES
+(2, 3, 2, 'acceptee');
+
+INSERT INTO messages (expediteur_id, destinataire_id, sujet, contenu, est_lu) VALUES
 (1, 2, 'Bienvenue sur SlimBox', 'Salut Alice, ton compte est prêt.', 0),
 (1, 3, 'Bienvenue sur SlimBox', 'Salut Bob, ton compte est prêt.', 0),
 (2, 3, 'Premier message', 'Salut Bob, ça marche ?', 0),
