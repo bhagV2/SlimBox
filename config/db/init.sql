@@ -9,7 +9,6 @@ DROP TABLE IF EXISTS utilisateurs;
 CREATE TABLE utilisateurs (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     nom_utilisateur VARCHAR(50) NOT NULL UNIQUE,
-    adresse_courriel VARCHAR(150) NOT NULL UNIQUE,
     mot_de_passe_hash VARCHAR(255) NOT NULL,
     type_compte ENUM('utilisateur', 'administrateur') NOT NULL DEFAULT 'utilisateur',
     date_creation TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -35,7 +34,6 @@ CREATE TABLE messages (
     destinataire_id INT UNSIGNED NOT NULL,
     sujet VARCHAR(150) NOT NULL,
     contenu TEXT NOT NULL,
-    est_lu TINYINT(1) NOT NULL DEFAULT 0,
     date_creation TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_messages_expediteur FOREIGN KEY (expediteur_id) REFERENCES utilisateurs(id) ON DELETE CASCADE,
     CONSTRAINT fk_messages_destinataire FOREIGN KEY (destinataire_id) REFERENCES utilisateurs(id) ON DELETE CASCADE,
@@ -43,16 +41,16 @@ CREATE TABLE messages (
 );
 
 -- Utiliser ce mot de passe pour tous les comptes de démonstration : slimbox123
-INSERT INTO utilisateurs (nom_utilisateur, adresse_courriel, mot_de_passe_hash, type_compte) VALUES
-('admin', 'admin@slimbox.local', '$2y$12$c3V4x0MK.636Lsmb9iyTPeP8cc81pB7SHOVZqWbb2cJgGcUlge5Pm', 'administrateur'),
-('alice', 'alice@slimbox.local', '$2y$12$c3V4x0MK.636Lsmb9iyTPeP8cc81pB7SHOVZqWbb2cJgGcUlge5Pm', 'utilisateur'),
-('bob',   'bob@slimbox.local',   '$2y$12$c3V4x0MK.636Lsmb9iyTPeP8cc81pB7SHOVZqWbb2cJgGcUlge5Pm', 'utilisateur');
+INSERT INTO utilisateurs (nom_utilisateur, mot_de_passe_hash, type_compte) VALUES
+('admin', '$2y$12$c3V4x0MK.636Lsmb9iyTPeP8cc81pB7SHOVZqWbb2cJgGcUlge5Pm', 'administrateur'),
+('alice', '$2y$12$c3V4x0MK.636Lsmb9iyTPeP8cc81pB7SHOVZqWbb2cJgGcUlge5Pm', 'utilisateur'),
+('bob', '$2y$12$c3V4x0MK.636Lsmb9iyTPeP8cc81pB7SHOVZqWbb2cJgGcUlge5Pm', 'utilisateur');
 
 INSERT INTO amities (utilisateur_un_id, utilisateur_deux_id, demandeur_id, statut) VALUES
 (2, 3, 2, 'acceptee');
 
-INSERT INTO messages (expediteur_id, destinataire_id, sujet, contenu, est_lu) VALUES
-(1, 2, 'Bienvenue sur SlimBox', 'Salut Alice, ton compte est prêt.', 0),
-(1, 3, 'Bienvenue sur SlimBox', 'Salut Bob, ton compte est prêt.', 0),
-(2, 3, 'Premier message', 'Salut Bob, ça marche ?', 0),
-(3, 2, 'Re: Premier message', 'Oui, tout fonctionne !', 1);
+INSERT INTO messages (expediteur_id, destinataire_id, sujet, contenu) VALUES
+(1, 2, 'Bienvenue sur SlimBox', 'Salut Alice, ton compte est prêt.'),
+(1, 3, 'Bienvenue sur SlimBox', 'Salut Bob, ton compte est prêt.'),
+(2, 3, 'Premier message', 'Salut Bob, ça marche ?'),
+(3, 2, 'Re: Premier message', 'Oui, tout fonctionne !');
