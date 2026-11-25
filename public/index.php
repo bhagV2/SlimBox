@@ -10,6 +10,7 @@ session_start();
 // Choisir le chemin indiqué dans .env ou le déduire du dossier de l'application.
 $basePath = trim($_ENV['APP_BASE_PATH'] ?? dirname($_SERVER['SCRIPT_NAME'] ?? '/'), '/');
 define('APP_BASE_PATH', $basePath === '' ? '' : '/' . $basePath);
+define('APP_NAME', $_ENV['APP_NAME'] ?? 'SlimBox');
 
 $app = AppFactory::create();
 $app->setBasePath(APP_BASE_PATH);
