@@ -1,0 +1,109 @@
+body {
+    margin: 0;
+    background: #f4f4f4;
+    color: #222;
+    font-family: Arial, sans-serif;
+}
+
+.header,
+.site-footer {
+    padding: 16px;
+    background: white;
+}
+
+.header {
+    border-bottom: 1px solid #ddd;
+}
+
+.header-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: auto;
+    gap: 12px;
+}
+
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #222;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.header-logo {
+    padding: 8px;
+    border-radius: 6px;
+    background: #3157d5;
+    color: white;
+}
+
+.header-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.header-nav a {
+    padding: 8px;
+    color: #3157d5;
+    text-decoration: none;
+}
+
+.header-nav .header-signup {
+    border-radius: 5px;
+    background: #3157d5;
+    color: white;
+}
+
+main {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+form {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 8px;
+    background: white;
+}
+
+form h1 {
+    margin-top: 0;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form input,
+form button {
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 10px;
+}
+
+form button {
+    border: 0;
+    border-radius: 5px;
+    background: #3157d5;
+    color: white;
+    cursor: pointer;
+}
+
+form p {
+    text-align: center;
+}
+
+.site-footer {
+    border-top: 1px solid #ddd;
+    color: #555;
+    text-align: center;
+}
