@@ -1,0 +1,56 @@
+#dashboard > div {
+    overflow-x: auto;
+}
+
+#dashboard table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+#dashboard th,
+#dashboard td {
+    padding: 10px;
+    border-bottom: 1px solid gainsboro;
+    text-align: left;
+}
+
+#dashboard th {
+    background: whitesmoke;
+}
+
+#dashboard td:last-child > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+#dashboard td:last-child > div > a {
+    display: inline-block;
+    padding: 9px 12px;
+    border-radius: 5px;
+    background: seagreen;
+    color: white;
+    text-decoration: none;
+}
+
+#dashboard td:last-child > div > a:hover {
+    background: darkgreen;
+}
+
+#dashboard td form {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+}
+
+#dashboard td form button {
+    width: auto;
+    background: brown;
+}
+
+#dashboard td form button:hover {
+    background: darkred;
+}

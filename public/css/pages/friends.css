@@ -1,0 +1,78 @@
+#amis {
+    max-width: 900px;
+}
+
+#amis > div {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+#amis section {
+    padding: 16px;
+    border: 1px solid gainsboro;
+    border-radius: 6px;
+    background: white;
+}
+
+#amis section h2 {
+    margin-top: 0;
+}
+
+#amis ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#amis li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid gainsboro;
+}
+
+#amis li > div {
+    display: flex;
+    gap: 8px;
+}
+
+#amis li form {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+}
+
+#amis li form button {
+    width: auto;
+}
+
+#amis form[action$="/refuser"] button {
+    background: brown;
+}
+
+#amis form[action$="/refuser"] button:hover {
+    background: darkred;
+}
+
+#amis li > a:last-child {
+    display: inline-block;
+    padding: 9px 12px;
+    border-radius: 5px;
+    background: seagreen;
+    color: white;
+    text-decoration: none;
+}
+
+#amis li > a:last-child:hover {
+    background: darkgreen;
+}
+
+@media (max-width: 700px) {
+    #amis > div {
+        grid-template-columns: 1fr;
+    }
+}
