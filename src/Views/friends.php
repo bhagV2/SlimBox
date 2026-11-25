@@ -1,8 +1,10 @@
 <?php
-$pageStyle = 'friends';
-$pageTitle = 'Amis | ' . $appName;
+require __DIR__ . '/includes/head.php';
 ?>
-<?php require __DIR__ . '/includes/head.php'; ?>
+<title>Amis | <?= htmlspecialchars(APP_NAME) ?></title>
+<link rel="stylesheet" href="<?= htmlspecialchars(APP_BASE_PATH) ?>/css/pages/friends.css">
+</head>
+<body>
 <?php require __DIR__ . '/includes/header.php'; ?>
 
 <main id="amis">
@@ -25,11 +27,11 @@ $pageTitle = 'Amis | ' . $appName;
                             <span><?= htmlspecialchars($friend['nom_utilisateur']) ?></span>
 
                             <div>
-                                <form action="<?= $basePath ?>/amis/<?= (int) $friend['id'] ?>/accepter" method="post">
+                                <form action="<?= htmlspecialchars(APP_BASE_PATH) ?>/amis/<?= (int) $friend['id'] ?>/accepter" method="post">
                                     <button type="submit">Accepter</button>
                                 </form>
 
-                                <form action="<?= $basePath ?>/amis/<?= (int) $friend['id'] ?>/refuser" method="post">
+                                <form action="<?= htmlspecialchars(APP_BASE_PATH) ?>/amis/<?= (int) $friend['id'] ?>/refuser" method="post">
                                     <button type="submit">Refuser</button>
                                 </form>
                             </div>
@@ -48,11 +50,11 @@ $pageTitle = 'Amis | ' . $appName;
                 <ul>
                     <?php foreach ($friends as $friend): ?>
                         <li>
-                            <a href="<?= $basePath ?>/messages/<?= (int) $friend['id'] ?>">
+                            <a href="<?= htmlspecialchars(APP_BASE_PATH) ?>/messages/<?= (int) $friend['id'] ?>">
                                 <?= htmlspecialchars($friend['nom_utilisateur']) ?>
                             </a>
 
-                            <a href="<?= $basePath ?>/messages/<?= (int) $friend['id'] ?>">Écrire</a>
+                            <a href="<?= htmlspecialchars(APP_BASE_PATH) ?>/messages/<?= (int) $friend['id'] ?>">Écrire</a>
                         </li>
                     <?php endforeach; ?>
                 </ul>
@@ -87,7 +89,7 @@ $pageTitle = 'Amis | ' . $appName;
                         <li>
                             <span><?= htmlspecialchars($friend['nom_utilisateur']) ?></span>
 
-                            <form action="<?= $basePath ?>/amis/<?= (int) $friend['id'] ?>/demander" method="post">
+                            <form action="<?= htmlspecialchars(APP_BASE_PATH) ?>/amis/<?= (int) $friend['id'] ?>/demander" method="post">
                                 <button type="submit">Ajouter</button>
                             </form>
                         </li>

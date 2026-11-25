@@ -1,13 +1,15 @@
 <?php
-$pageStyle = 'inscription';
-$pageTitle = 'Inscription | ' . $appName;
+require __DIR__ . '/includes/head.php';
 ?>
-<?php require __DIR__ . '/includes/head.php'; ?>
+<title>Inscription | <?= htmlspecialchars(APP_NAME) ?></title>
+<link rel="stylesheet" href="<?= htmlspecialchars(APP_BASE_PATH) ?>/css/pages/inscription.css">
+</head>
+<body>
 <?php require __DIR__ . '/includes/header.php'; ?>
 
 <main id="inscription">
-    <form action="<?= $basePath ?>/inscription" method="post">
-        <h1>Création de votre compte <?= htmlspecialchars($appName) ?></h1>
+    <form action="<?= htmlspecialchars(APP_BASE_PATH) ?>/inscription" method="post">
+        <h1>Création de votre compte <?= htmlspecialchars(APP_NAME) ?></h1>
 
         <?php if (!empty($error)): ?>
             <p><?= htmlspecialchars($error) ?></p>
@@ -21,7 +23,7 @@ $pageTitle = 'Inscription | ' . $appName;
 
         <button type="submit">Créer mon compte</button>
 
-        <p><a href="<?= $basePath ?>/connexion">Déjà inscrit ? Connectez-vous.</a></p>
+        <p><a href="<?= htmlspecialchars(APP_BASE_PATH) ?>/connexion">Déjà inscrit ? Connectez-vous.</a></p>
     </form>
 </main>
 

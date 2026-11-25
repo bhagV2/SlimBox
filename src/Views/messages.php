@@ -1,8 +1,10 @@
 <?php
-$pageStyle = 'messages';
-$pageTitle = 'Messages | ' . $appName;
+require __DIR__ . '/includes/head.php';
 ?>
-<?php require __DIR__ . '/includes/head.php'; ?>
+<title>Messages | <?= htmlspecialchars(APP_NAME) ?></title>
+<link rel="stylesheet" href="<?= htmlspecialchars(APP_BASE_PATH) ?>/css/pages/messages.css">
+</head>
+<body>
 <?php require __DIR__ . '/includes/header.php'; ?>
 
 <main id="messages">
@@ -17,14 +19,14 @@ $pageTitle = 'Messages | ' . $appName;
             <h2>Amis</h2>
 
             <?php if (empty($contacts)): ?>
-                <p>Vous n’avez pas encore d’amis. <a href="<?= $basePath ?>/amis">Ajouter un ami</a>.</p>
+                <p>Vous n’avez pas encore d’amis. <a href="<?= htmlspecialchars(APP_BASE_PATH) ?>/amis">Ajouter un ami</a>.</p>
             <?php else: ?>
                 <ul>
                     <?php foreach ($contacts as $contact): ?>
                         <?php $isSelected = $selectedContact !== null && $selectedContact->getId() === (int) $contact['id']; ?>
 
                         <li>
-                            <a href="<?= $basePath ?>/messages/<?= (int) $contact['id'] ?>">
+                            <a href="<?= htmlspecialchars(APP_BASE_PATH) ?>/messages/<?= (int) $contact['id'] ?>">
                                 <span>@</span>
                                 <span><?= htmlspecialchars($contact['nom_utilisateur']) ?></span>
                             </a>
@@ -38,7 +40,7 @@ $pageTitle = 'Messages | ' . $appName;
             <?php if ($selectedContact === null): ?>
                 <div>
                     <h2>Bienvenue dans les messages</h2>
-                    <p>Choisissez un ami pour commencer une conversation, ou <a href="<?= $basePath ?>/amis">ajoutez-en un</a>.</p>
+                    <p>Choisissez un ami pour commencer une conversation, ou <a href="<?= htmlspecialchars(APP_BASE_PATH) ?>/amis">ajoutez-en un</a>.</p>
                 </div>
             <?php else: ?>
                 <header>
@@ -70,7 +72,7 @@ $pageTitle = 'Messages | ' . $appName;
                     <?php endif; ?>
                 </div>
 
-                <form action="<?= $basePath ?>/messages/<?= $selectedContact->getId() ?>/envoyer" method="post">
+                <form action="<?= htmlspecialchars(APP_BASE_PATH) ?>/messages/<?= $selectedContact->getId() ?>/envoyer" method="post">
                     <textarea id="message-body" name="body" maxlength="2000" placeholder="Écrire à <?= htmlspecialchars($selectedContact->getUsername()) ?>" required></textarea>
 
                     <button type="submit">Envoyer</button>

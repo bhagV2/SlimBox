@@ -1,8 +1,10 @@
 <?php
-$pageStyle = 'edit-user';
-$pageTitle = 'Modifier un compte | ' . $appName;
+require __DIR__ . '/includes/head.php';
 ?>
-<?php require __DIR__ . '/includes/head.php'; ?>
+<title>Modifier un compte | <?= htmlspecialchars(APP_NAME) ?></title>
+<link rel="stylesheet" href="<?= htmlspecialchars(APP_BASE_PATH) ?>/css/pages/edit-user.css">
+</head>
+<body>
 <?php require __DIR__ . '/includes/header.php'; ?>
 
 <main id="edit-user">
@@ -10,7 +12,7 @@ $pageTitle = 'Modifier un compte | ' . $appName;
     <?php if (!empty($alert)): ?>
         <p><?= htmlspecialchars($alert) ?></p>
     <?php endif; ?>
-    <form action="<?= $basePath ?>/dashboard/utilisateurs/<?= $user->getId() ?>/modifier" method="post">
+    <form action="<?= htmlspecialchars(APP_BASE_PATH) ?>/dashboard/utilisateurs/<?= $user->getId() ?>/modifier" method="post">
         <label for="username">Nom d’utilisateur</label>
         <input type="text" name="username" id="username" value="<?= htmlspecialchars($user->getUsername()) ?>" maxlength="50" required>
 
@@ -19,7 +21,7 @@ $pageTitle = 'Modifier un compte | ' . $appName;
 
         <button type="submit">Enregistrer</button>
 
-        <p><a href="<?= $basePath ?>/dashboard">Retour à la liste des comptes</a></p>
+        <p><a href="<?= htmlspecialchars(APP_BASE_PATH) ?>/dashboard">Retour à la liste des comptes</a></p>
     </form>
 </main>
 

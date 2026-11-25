@@ -1,8 +1,10 @@
 <?php
-$pageStyle = 'dashboard';
-$pageTitle = 'Tableau de bord | ' . $appName;
+require __DIR__ . '/includes/head.php';
 ?>
-<?php require __DIR__ . '/includes/head.php'; ?>
+<title>Tableau de bord | <?= htmlspecialchars(APP_NAME) ?></title>
+<link rel="stylesheet" href="<?= htmlspecialchars(APP_BASE_PATH) ?>/css/pages/dashboard.css">
+</head>
+<body>
 <?php require __DIR__ . '/includes/header.php'; ?>
 
 <main id="dashboard">
@@ -12,7 +14,7 @@ $pageTitle = 'Tableau de bord | ' . $appName;
         <p><?= htmlspecialchars($alert) ?></p>
     <?php endif; ?>
 
-    <p><a href="<?= $basePath ?>/inscription">Créer un compte</a></p>
+    <p><a href="<?= htmlspecialchars(APP_BASE_PATH) ?>/inscription">Créer un compte</a></p>
 
     <?php if (empty($users)): ?>
         <p>Aucun compte à afficher.</p>
@@ -38,12 +40,12 @@ $pageTitle = 'Tableau de bord | ' . $appName;
                             <td>
                                 <div>
                                     <?php if ($userId !== $currentUserId): ?>
-                                        <a href="<?= $basePath ?>/dashboard/utilisateurs/<?= $userId ?>/modifier">Modifier</a>
-                                        <form action="<?= $basePath ?>/dashboard/utilisateurs/<?= $userId ?>/supprimer" method="post">
+                                        <a href="<?= htmlspecialchars(APP_BASE_PATH) ?>/dashboard/utilisateurs/<?= $userId ?>/modifier">Modifier</a>
+                                        <form action="<?= htmlspecialchars(APP_BASE_PATH) ?>/dashboard/utilisateurs/<?= $userId ?>/supprimer" method="post">
                                             <button type="submit">Supprimer</button>
                                         </form>
                                     <?php else: ?>
-                                        <span>Modifiable depuis <a href="<?= $basePath ?>/compte">Mon compte</a></span>
+                                        <span>Modifiable depuis <a href="<?= htmlspecialchars(APP_BASE_PATH) ?>/compte">Mon compte</a></span>
                                     <?php endif; ?>
                                 </div>
                             </td>

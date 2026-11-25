@@ -1,13 +1,15 @@
 <?php
-$pageStyle = 'connexion';
-$pageTitle = 'Connexion | ' . $appName;
+require __DIR__ . '/includes/head.php';
 ?>
-<?php require __DIR__ . '/includes/head.php'; ?>
+<title>Connexion | <?= htmlspecialchars(APP_NAME) ?></title>
+<link rel="stylesheet" href="<?= htmlspecialchars(APP_BASE_PATH) ?>/css/pages/connexion.css">
+</head>
+<body>
 <?php require __DIR__ . '/includes/header.php'; ?>
 
 <main id="connexion">
-    <form action="<?= $basePath ?>/connexion" method="post">
-        <h1>Connexion à votre compte <?= htmlspecialchars($appName) ?></h1>
+    <form action="<?= htmlspecialchars(APP_BASE_PATH) ?>/connexion" method="post">
+        <h1>Connexion à votre compte <?= htmlspecialchars(APP_NAME) ?></h1>
 
         <?php if (!empty($alert)): ?>
             <p><?= htmlspecialchars($alert) ?></p>
@@ -25,7 +27,7 @@ $pageTitle = 'Connexion | ' . $appName;
 
         <button type="submit">Se connecter</button>
 
-        <p><a href="<?= $basePath ?>/inscription">Pas encore de compte ? Créez le vôtre.</a></p>
+        <p><a href="<?= htmlspecialchars(APP_BASE_PATH) ?>/inscription">Pas encore de compte ? Créez le vôtre.</a></p>
     </form>
 </main>
 
