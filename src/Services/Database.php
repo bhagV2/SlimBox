@@ -10,9 +10,10 @@ class Database
 {
     private static ?PDO $pdo = null;
 
+    // Créer ou réutiliser la connexion à la base de données.
     public static function getConnection(): PDO
     {
-        if (self::$pdo instanceof PDO) {
+        if (self::$pdo !== null) {
             return self::$pdo;
         }
 
@@ -25,7 +26,7 @@ class Database
             throw new RuntimeException('Variables DB_HOST, DB_NAME, DB_USER et DB_PASS manquantes dans l\'environnement.');
         }
 
-        $dsn = sprintf('mysql:host=%s;dbname=%s;charset=utf8mb4', $host, $name);
+        $dsn = 'mysql:host=' . $host . ';dbname=' . $name . ';charset=utf8mb4';
 
         try {
             self::$pdo = new PDO($dsn, $user, $pass, [
@@ -33,8 +34,8 @@ class Database
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
                 PDO::ATTR_EMULATE_PREPARES => false,
             ]);
-        } catch (PDOException $e) {
-            throw new RuntimeException('Impossible de se connecter à la base de données.', 0, $e);
+        } catch (PDOException $exception) {
+            throw new RuntimeException('Impossible de se connecter à la base de données.', 0, $exception);
         }
 
         return self::$pdo;
