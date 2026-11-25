@@ -1,5 +1,4 @@
 <?php
-$activePage = 'dashboard';
 $pageStyle = 'dashboard';
 $pageTitle = 'Tableau de bord | ' . $appName;
 ?>

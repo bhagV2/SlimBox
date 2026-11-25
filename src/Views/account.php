@@ -1,5 +1,4 @@
 <?php
-$activePage = 'account';
 $pageStyle = 'account';
 $pageTitle = 'Mon compte | ' . $appName;
 ?>

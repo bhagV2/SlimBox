@@ -1,5 +1,4 @@
 <?php
-$activePage = 'dashboard';
 $pageStyle = 'edit-user';
 $pageTitle = 'Modifier un compte | ' . $appName;
 ?>

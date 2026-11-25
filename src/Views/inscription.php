@@ -1,5 +1,4 @@
 <?php
-$activePage = 'inscription';
 $pageStyle = 'inscription';
 $pageTitle = 'Inscription | ' . $appName;
 ?>

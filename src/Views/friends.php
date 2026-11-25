@@ -1,5 +1,4 @@
 <?php
-$activePage = 'friends';
 $pageStyle = 'friends';
 $pageTitle = 'Amis | ' . $appName;
 ?>

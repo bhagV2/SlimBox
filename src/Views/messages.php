@@ -1,5 +1,4 @@
 <?php
-$activePage = 'messages';
 $pageStyle = 'messages';
 $pageTitle = 'Messages | ' . $appName;
 ?>
@@ -25,8 +24,8 @@ $pageTitle = 'Messages | ' . $appName;
                         <?php $isSelected = $selectedContact !== null && $selectedContact->getId() === (int) $contact['id']; ?>
 
                         <li>
-                            <a href="<?= $basePath ?>/messages/<?= (int) $contact['id'] ?>"<?= $isSelected ? ' aria-current="page"' : '' ?>>
-                                <span aria-hidden="true">@</span>
+                            <a href="<?= $basePath ?>/messages/<?= (int) $contact['id'] ?>">
+                                <span>@</span>
                                 <span><?= htmlspecialchars($contact['nom_utilisateur']) ?></span>
                             </a>
                         </li>
@@ -35,7 +34,7 @@ $pageTitle = 'Messages | ' . $appName;
             <?php endif; ?>
         </aside>
 
-        <section aria-label="Conversation">
+        <section>
             <?php if ($selectedContact === null): ?>
                 <div>
                     <h2>Bienvenue dans les messages</h2>
@@ -43,7 +42,7 @@ $pageTitle = 'Messages | ' . $appName;
                 </div>
             <?php else: ?>
                 <header>
-                    <span aria-hidden="true">@</span>
+                    <span>@</span>
 
                     <div>
                         <h2><?= htmlspecialchars($selectedContact->getUsername()) ?></h2>
@@ -72,7 +71,7 @@ $pageTitle = 'Messages | ' . $appName;
                 </div>
 
                 <form action="<?= $basePath ?>/messages/<?= $selectedContact->getId() ?>/envoyer" method="post">
-                    <textarea id="message-body" name="body" aria-label="Votre message" maxlength="2000" placeholder="Écrire à <?= htmlspecialchars($selectedContact->getUsername()) ?>" required></textarea>
+                    <textarea id="message-body" name="body" maxlength="2000" placeholder="Écrire à <?= htmlspecialchars($selectedContact->getUsername()) ?>" required></textarea>
 
                     <button type="submit">Envoyer</button>
                 </form>

@@ -1,5 +1,4 @@
 <?php
-$activePage = 'connexion';
 $pageStyle = 'connexion';
 $pageTitle = 'Connexion | ' . $appName;
 ?>
