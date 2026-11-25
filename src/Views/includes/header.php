@@ -11,6 +11,8 @@
             <?php endif; ?>
 
             <?php if (!empty($_SESSION['user_id'])): ?>
+                <a href="<?= $basePath ?>/compte" <?= $activePage === 'account' ? 'aria-current="page"' : '' ?>>Mon compte</a>
+
                 <a href="<?= $basePath ?>/amis" <?= $activePage === 'friends' ? 'aria-current="page"' : '' ?>>Amis</a>
 
                 <a href="<?= $basePath ?>/messages" <?= $activePage === 'messages' ? 'aria-current="page"' : '' ?>>Messages</a>
