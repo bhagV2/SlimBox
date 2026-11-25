@@ -1,6 +1,7 @@
 CREATE DATABASE IF NOT EXISTS slimbox CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE slimbox;
 
+-- Ce script réinitialise les tables. Pour créer le compte MySQL de l'application, voir create-user.sql.
 DROP TABLE IF EXISTS messages;
 DROP TABLE IF EXISTS users;
 
