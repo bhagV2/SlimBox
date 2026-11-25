@@ -1,6 +1,6 @@
 {
     "name": "bhag/slimbox",
-    "description": "Projet gestion SlimBox",
+    "description": "Messagerie en PHP avec Slim 4",
     "type": "project",
     "license": "MIT",
     "autoload": {
