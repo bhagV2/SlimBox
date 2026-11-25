@@ -2,7 +2,9 @@
 require_once dirname(__DIR__, 2) . '/src/Config/env.php';
 $appName = $_ENV["APP_NAME"];
 $activePage = 'accueil';
+$pageTitle = 'Accueil | ' . $appName;
 ?>
+<?php require __DIR__ . '/head.php'; ?>
 <?php require __DIR__ . '/header.php'; ?>
 
 <main>
@@ -15,4 +17,4 @@ $activePage = 'accueil';
     <p><a href="/connexion">Connectez-vous à votre compte</a></p>
 </main>
 
-<footer>Bhagya &copy; <?= $appName ?> 2026</footer>
+<?php require __DIR__ . '/footer.php'; ?>
