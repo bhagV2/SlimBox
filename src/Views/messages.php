@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . '/includes/head.php';
+$selectedContact = $selectedContact ?? null;
 ?>
 <title>Messages | <?= htmlspecialchars(APP_NAME) ?></title>
 <link rel="stylesheet" href="<?= htmlspecialchars(APP_BASE_PATH) ?>/css/pages/messages.css">
