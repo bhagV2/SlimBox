@@ -1,0 +1,35 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    environment:
+      APP_NAME: ${APP_NAME:-SlimBox}
+      APP_ENV: ${APP_ENV:-local}
+      APP_BASE_PATH: ${APP_BASE_PATH:-}
+      DB_HOST: db
+      DB_NAME: ${DB_NAME:-slimbox}
+      DB_USER: ${DB_USER:-slimboxUser}
+      DB_PASS: ${DB_PASS:?Set DB_PASS in .env}
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env}
+      MYSQL_DATABASE: ${DB_NAME:-slimbox}
+      MYSQL_USER: ${DB_USER:-slimboxUser}
+      MYSQL_PASSWORD: ${DB_PASS:?Set DB_PASS in .env}
+    volumes:
+      - slimbox-db-data:/var/lib/mysql
+      - ./config/db/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p\"$${MYSQL_ROOT_PASSWORD}\""]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  slimbox-db-data:
