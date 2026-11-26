@@ -36,6 +36,8 @@ Compose démarre PHP/Apache et MySQL, et configure automatiquement la connexion
 de l’application à la base. Les tables et comptes de démonstration sont créés
 au premier démarrage. `create-user.sql` sert à une installation MySQL manuelle
 et n’est pas utilisé par Docker.
+Avec Docker, l’application est servie à la racine sur le port `8080` ;
+`APP_BASE_PATH` du fichier `.env` n’est pas utilisé.
 
 Pour arrêter l’application, lancez `docker compose down`. Les données MySQL
 restent conservées dans un volume. La commande `docker compose down -v` supprime

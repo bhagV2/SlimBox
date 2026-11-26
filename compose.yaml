@@ -6,7 +6,7 @@ services:
     environment:
       APP_NAME: ${APP_NAME:-SlimBox}
       APP_ENV: ${APP_ENV:-local}
-      APP_BASE_PATH: ${APP_BASE_PATH:-}
+      APP_BASE_PATH: ""
       DB_HOST: db
       DB_NAME: ${DB_NAME:-slimbox}
       DB_USER: ${DB_USER:-slimboxUser}
