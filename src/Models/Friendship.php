@@ -197,8 +197,6 @@ class Friendship
     // Ordonner les identifiants pour retrouver la relation d’amitié.
     private static function orderedIds(int $userId, int $otherUserId): array
     {
-        return $userId < $otherUserId
-            ? [$userId, $otherUserId]
-            : [$otherUserId, $userId];
+        return $userId < $otherUserId ? [$userId, $otherUserId] : [$otherUserId, $userId];
     }
 }
